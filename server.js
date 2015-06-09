@@ -1,5 +1,6 @@
-var express = require('express'),
-    app     = express();
+var express   = require('express'),
+    app       = express(),
+    authRoute = require('./src/routes/auth.js');
 
 app.set('view engine', 'jade');
 app.set('views', './src/static/views');
@@ -8,9 +9,7 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/about', function (req, res) {
-    res.send('About Page!');
-});
+app.use('/auth', authRoute);
 
 var server = app.listen(3000, 'localhost', function () {
     var host = server.address().address;

@@ -5,5 +5,5 @@ gulp.task('server', function () {
     server.run(['server.js']);
 
     gulp.watch(['src/static/**/*'], server.notify);
-    gulp.watch(['server.js'], [server.run]);
+    gulp.watch(['server.js', 'src/routes/**/*.js'], [server.run]);
 });
