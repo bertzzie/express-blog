@@ -1,0 +1,25 @@
+{
+  "name": "express-blog",
+  "version": "0.0.1",
+  "description": "Simple blogging app using express",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.12.4",
+    "jade": "^1.10.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-express": "^0.3.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blog",
+    "sample",
+    "tutorial",
+    "express-js"
+  ],
+  "author": "Alex Xandra Albert Sim",
+  "license": "MIT"
+}
