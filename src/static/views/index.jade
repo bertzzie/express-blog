@@ -1,6 +1,27 @@
 html
     head
-        title Hello, Jade!
+        block title
+            title Hello, Jade!
+        link(rel="stylesheet", href="/styles/main.css")
     body
-        h1 Hello, Jade
-        p This is written from inside JADE!
+        header#main-header
+            nav#main-nav(role="navigation")
+                a#logo(href="/") BlogEngine
+                ul.horizontal-menu
+                    li.menu-item: a(href="/about") About
+                    li.menu-item: a(href="/auth/login") Login
+
+        #main-container
+            block content
+                h1 Hello, Jade
+                p This is written from inside JADE!
+
+        footer#main-footer
+            aside
+                h4 Links
+                ul.veritcal-menu
+                    li.menu-item: a(href="/") Satu
+                    li.menu-item: a(href="/") Dua
+                    li.menu-item: a(href="/") Tiga
+            aside#copyright
+                p &copy; Someone 2015

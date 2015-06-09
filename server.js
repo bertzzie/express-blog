@@ -2,6 +2,8 @@ var express   = require('express'),
     app       = express(),
     authRoute = require('./src/routes/auth.js');
 
+app.use(express.static('./src/static'));
+
 app.set('view engine', 'jade');
 app.set('views', './src/static/views');
 
