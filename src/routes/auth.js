@@ -13,7 +13,10 @@ router.get('/logout', function (req, res) {
 });
 
 router.get('/register', function (req, res) {
-    res.send('REGISTER PAGE');
+    res.render('auth/register');
+});
+
+router.post('/register', function (req, res) {
 });
 
 module.exports = router;

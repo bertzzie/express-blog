@@ -3,6 +3,8 @@ html
         block title
             title Hello, Jade!
         link(rel="stylesheet", href="/styles/main.css")
+
+        block moreStyle
     body
         header#main-header
             nav#main-nav(role="navigation")
@@ -10,6 +12,7 @@ html
                 ul.horizontal-menu
                     li.menu-item: a(href="/about") About
                     li.menu-item: a(href="/auth/login") Login
+                    li.menu-item: a(href="/auth/register") Register
 
         #main-container
             block content

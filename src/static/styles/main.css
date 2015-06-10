@@ -58,6 +58,7 @@ body {
 #main-container {
     margin: 24px auto;
     max-width: 1120px;
+    min-height: 415px;
 }
 
 #main-footer {
