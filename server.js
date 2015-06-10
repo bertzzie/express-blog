@@ -1,11 +1,24 @@
-var express   = require('express'),
-    app       = express(),
-    authRoute = require('./src/routes/auth.js');
+var express     = require('express'),
+    app         = express(),
+    session     = require('express-session'),
+    auth        = require('./src/routes/auth.js'),
+    authRoute   = auth.router,
+    JadeLoginMW = auth.JadeLoggedInMiddleware;
+
+var SESSION_INFO = {
+    secret: 'lasjdfoawu012391z',
+    cookie: { maxAge: 3600 * 1000 },
+    resave: true,
+    saveUninitialized: false
+};
 
 app.use(express.static('./src/static'));
+app.use(session(SESSION_INFO));
 
 app.set('view engine', 'jade');
 app.set('views', './src/static/views');
+
+app.get('*', JadeLoginMW);
 
 app.get('/', function (req, res) {
     res.render('index');

@@ -11,8 +11,11 @@ html
                 a#logo(href="/") BlogEngine
                 ul.horizontal-menu
                     li.menu-item: a(href="/about") About
-                    li.menu-item: a(href="/auth/login") Login
-                    li.menu-item: a(href="/auth/register") Register
+                    if loggedin
+                        li.menu-item: a(href="/auth/logout") Logout
+                    else
+                        li.menu-item: a(href="/auth/login") Login
+                        li.menu-item: a(href="/auth/register") Register
 
         #main-container
             if flashError

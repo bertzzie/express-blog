@@ -1,7 +1,7 @@
-var express = require('express'),
-    router  = express.Router(),
+var express    = require('express'),
+    router     = express.Router(),
     bodyParser = require('body-parser'),
-    db = require('../database/database');
+    db         = require('../database/database');
 
 var urlEncodedParser = bodyParser.urlencoded({extended: true});
 
@@ -17,7 +17,16 @@ router.post('/login', urlEncodedParser, function (req, res) {
 });
 
 router.get('/logout', function (req, res) {
-    res.send('LOGOUT PAGE');
+    req.session.destroy(function (err) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Failed to destroy session.');
+            return;
+        }
+
+        res.locals.loggedin = false;
+        res.redirect('/');
+    });
 });
 
 router.get('/register', function (req, res) {
@@ -51,9 +60,11 @@ function make_UserExistsLogin(req, res, uname, passw) {
                 user   = results[0];
 
             if(bcrypt.compareSync(passw, user['password'])) {
-                res.render('index', {
-                    flashInfo: 'Welcome, ' + user['username'] + '!'
-                });
+                var sess = req.session;
+                sess.loggedin = true;
+                sess.username = uname;
+
+                res.redirect('/');
             } else {
                 res.render('auth/login', {
                     flashError: 'Wrong password'
@@ -99,4 +110,19 @@ function make_CreateUser(req, res) {
     };
 };
 
-module.exports = router;
+function jadeLoggedInMiddleware(req, res, next) {
+    res.locals.loggedin = req.session.loggedin || null;
+    next();
+};
+
+function mustLoggedInMiddleware(req, res, next) {
+    if (req.session.loggedin) {
+        next();
+    } else {
+        res.status(302).send("User must logged in to access the page.");
+    }
+};
+
+exports.router = router;
+exports.JadeLoggedInMiddleware = jadeLoggedInMiddleware;
+exports.MustLoggedInMiddleware = mustLoggedInMiddleware;
