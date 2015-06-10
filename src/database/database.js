@@ -1,5 +1,6 @@
-var mysql = require('mysql'),
-    pool  = mysql.createPool({
+var mysql  = require('mysql'),
+    bcrypt = require('bcrypt'),
+    pool   = mysql.createPool({
         host: process.env.MARIADB_HOST,
         user: process.env.MARIADB_USER,
         password: process.env.MARIADB_PASSWORD,
@@ -15,9 +16,11 @@ exports.CheckUserExists = function (username, callback) {
 };
 
 exports.CreateNewUser = function (username, password, callback) {
-    var query = "INSERT INTO users(`username`, `password`) VALUES (?, ?);";
+    var query = "INSERT INTO users(`username`, `password`) VALUES (?, ?);",
+        salt  = bcrypt.genSaltSync(10),
+        hash  = bcrypt.hashSync(password, salt);
 
-    queryDatabase(query, [username, password], callback);
+    queryDatabase(query, [username, hash], callback);
 };
 
 function queryDatabase(query, data, callback) {
