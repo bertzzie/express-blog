@@ -15,6 +15,11 @@ html
                     li.menu-item: a(href="/auth/register") Register
 
         #main-container
+            if flashError
+                div.flash-error= flashError
+            if flashInfo
+                div.flash-info= flashInfo
+
             block content
                 h1 Hello, Jade
                 p This is written from inside JADE!

@@ -19,6 +19,24 @@ body {
     margin: 0 12px;
 }
 
+.flash-error, .flash-info {
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.flash-error {
+    background: rgba(255, 63, 63, 0.2);
+    border: 1px solid rgba(255, 63, 63, 0.3);
+    color: #F44;
+}
+
+.flash-info {
+    background: rgba(63, 255, 63, 0.2);
+    border: 1px solid rgba(63, 255, 63, 0.3);
+    color: #333;
+}
+
 #main-header, #main-footer {
     background: #334D5C;
     color: #F3F3F3;
