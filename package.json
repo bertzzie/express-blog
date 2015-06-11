@@ -9,6 +9,7 @@
     "express": "^4.12.4",
     "express-session": "^1.11.2",
     "jade": "^1.10.0",
+    "markdown-js": "0.0.3",
     "mysql": "^2.7.0"
   },
   "devDependencies": {

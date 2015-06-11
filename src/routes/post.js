@@ -3,13 +3,14 @@ var express    = require('express'),
     auth       = require('./auth.js'),
     MustLogin  = auth.MustLoggedInMiddleware,
     db         = require('../database/database.js'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    markdown   = require('markdown-js').markdown;
 
 var urlEncodedParser = bodyParser.urlencoded({extended: true});
 
 router.use(MustLogin);
 
-router.get('/list', function (req, res) {
+router.get('/list', MarkdownProcessor, function (req, res) {
     db.GetPosts(10, function (err, results) {
         if (err) {
             console.log(err);
@@ -40,8 +41,13 @@ function make_NewPost(req, res) {
             return;
         }
 
-        res.redirect('list');
+        res.redirect('/list');
     };
 };
+
+function MarkdownProcessor (req, res, next) {
+    res.locals.markdown = markdown;
+    next();
+}
 
 exports.router = router;
