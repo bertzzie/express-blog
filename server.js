@@ -3,6 +3,7 @@ var express     = require('express'),
     session     = require('express-session'),
     auth        = require('./src/routes/auth.js'),
     authRoute   = auth.router,
+    postRoute   = require('./src/routes/post.js').router,
     JadeLoginMW = auth.JadeLoggedInMiddleware;
 
 var SESSION_INFO = {
@@ -25,6 +26,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/auth', authRoute);
+app.use('/post', postRoute);
 
 var server = app.listen(3000, 'localhost', function () {
     var host = server.address().address;

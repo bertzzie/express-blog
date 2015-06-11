@@ -63,6 +63,7 @@ function make_UserExistsLogin(req, res, uname, passw) {
                 var sess = req.session;
                 sess.loggedin = true;
                 sess.username = uname;
+                sess.userid   = user['id'];
 
                 res.redirect('/');
             } else {

@@ -12,6 +12,8 @@ html
                 ul.horizontal-menu
                     li.menu-item: a(href="/about") About
                     if loggedin
+                        li.menu-item: a(href="/post/list") Posts
+                        li.menu-item: a(href="/post/create") New Post
                         li.menu-item: a(href="/auth/logout") Logout
                     else
                         li.menu-item: a(href="/auth/login") Login

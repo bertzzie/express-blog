@@ -23,6 +23,20 @@ exports.CreateNewUser = function (username, password, callback) {
     queryDatabase(query, [username, hash], callback);
 };
 
+exports.GetPosts = function (count, callback) {
+    var query = "SELECT * FROM posts p ORDER BY p.date DESC LIMIT ?;",
+        count = count || 10;
+
+    queryDatabase(query, [count], callback);
+};
+
+exports.CreateNewPost = function (title, content, author, callback) {
+    var query = "INSERT INTO posts(`title`, `content`, `date`, `author`) " +
+                "VALUES (?, ?, NOW(), ?);";
+
+    queryDatabase(query, [title, content, author], callback);
+};
+
 function queryDatabase(query, data, callback) {
     pool.getConnection(function (poolErr, connection) {
         if (poolErr) {

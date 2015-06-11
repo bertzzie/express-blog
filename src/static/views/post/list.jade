@@ -1,0 +1,12 @@
+extends ../index.jade
+
+block title
+    title Post List
+
+block content
+    if posts.length > 0
+        each post in posts
+            h1= post.title
+            p= post.content
+    else
+        p No New Post

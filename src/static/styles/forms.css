@@ -45,6 +45,7 @@ form h1 {
 .form-group label {
     margin-right: 32px;
     text-align: right;
+    vertical-align: top;
     width: 160px;
 }
 
@@ -54,6 +55,10 @@ form h1 {
     min-height: 32px;
     padding: 4px;
     width: 280px;
+}
+
+.form-group textarea {
+    min-height: 320px;
 }
 
 .form-actions {
