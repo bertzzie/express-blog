@@ -41,7 +41,7 @@ function make_NewPost(req, res) {
             return;
         }
 
-        res.redirect('/list');
+        res.redirect('/post/list');
     };
 };
 

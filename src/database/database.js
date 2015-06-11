@@ -48,7 +48,7 @@ function queryDatabase(query, data, callback) {
         connection.query(query, data, function (connErr, results) {
             connection.release();
             if (connErr) {
-                console.log(conErr);
+                console.log(connErr);
                 callback(connErr);
                 return;
             }
