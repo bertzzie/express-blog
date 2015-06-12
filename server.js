@@ -17,7 +17,7 @@ app.use(express.static('./src/static'));
 app.use(session(SESSION_INFO));
 
 app.set('view engine', 'jade');
-app.set('views', './src/static/views');
+app.set('views', './src/views');
 
 app.get('*', JadeLoginMW);
 
